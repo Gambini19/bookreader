@@ -6,4 +6,6 @@ package ru.artemdivin.bookreader.MVP.Presenter;
 
 public interface IMainPresenter {
     void onGetListFromRepo();
+    void onGetBookByPath(String url);
+
 }

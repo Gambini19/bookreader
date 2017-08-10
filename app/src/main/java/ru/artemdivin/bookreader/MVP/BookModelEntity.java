@@ -10,7 +10,7 @@ public class BookModelEntity extends RealmObject {
     private String author;
     private String bookName;
     private String firstString;
-    private String book;
+    private byte[] book;
     private  long timeCreation;
     private boolean isFavorite;
 
@@ -38,11 +38,11 @@ public class BookModelEntity extends RealmObject {
         this.firstString = firstString;
     }
 
-    public String getBook() {
+    public byte[] getBook() {
         return book;
     }
 
-    public void setBook(String book) {
+    public void setBook(byte[] book) {
         this.book = book;
     }
 

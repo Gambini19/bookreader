@@ -15,11 +15,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.artemdivin.bookreader.Adapter.ShowBookAdapter;
 import ru.artemdivin.bookreader.MVP.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Presenter.MainPresenter;
 import ru.artemdivin.bookreader.R;
 
 public class RecyclerViewFragment extends Fragment implements IMainView{
     @BindView(R.id.rv_main)
     RecyclerView recyclerView;
+
+    MainPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,9 +31,11 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
 
         ButterKnife.bind(this, view);
 
+        presenter = new MainPresenter(this);
+
         BookModelEntity entity = new BookModelEntity();
         entity.setAuthor("A");
-        entity.setBook("B");
+        entity.setBook("as".getBytes());
         entity.setBookName("C");
         entity.setFavorite(true);
         entity.setFirstString("asadad");
@@ -44,6 +49,8 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manager);
+
+        presenter.onGetBookByPath("www.mybook.com/1.txt");
 
         return view;
     }
