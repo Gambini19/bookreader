@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
@@ -18,9 +20,9 @@ import ru.artemdivin.bookreader.R;
  */
 
 public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    RealmResults<BookModelEntity> list;
+    ArrayList<BookModelEntity> list;
 
-    public ShowBookAdapter(RealmResults<BookModelEntity> list) {
+    public ShowBookAdapter(ArrayList<BookModelEntity> list) {
         this.list = list;
     }
 
@@ -51,7 +53,7 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         viewHolder.tvAuthor.setText(list.get(position).getAuthor());
         viewHolder.tvBookName.setText(list.get(position).getBookName());
         viewHolder.tvFirstString.setText(list.get(position).getFirstString());
-        viewHolder.tvTimeCreation.setText((int) list.get(position).getTimeCreation());
+//        viewHolder.tvTimeCreation.setText(0);
         viewHolder.cbFavorites.setChecked(false);
 
     }
