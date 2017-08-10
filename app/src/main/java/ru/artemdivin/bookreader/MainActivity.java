@@ -1,15 +1,14 @@
 package ru.artemdivin.bookreader;
 
-import android.app.FragmentManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
+import ru.artemdivin.bookreader.Helper.SaverHelper;
 import ru.artemdivin.bookreader.MVP.View.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        SaverHelper helper = new SaverHelper();
+        helper.execute("1");
+        Log.d("execute", "execute");
+
 
         getFragmentManager()
                 .beginTransaction()
