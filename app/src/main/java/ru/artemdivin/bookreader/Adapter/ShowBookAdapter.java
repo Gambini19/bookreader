@@ -1,5 +1,6 @@
 package ru.artemdivin.bookreader.Adapter;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
+import ru.artemdivin.bookreader.MVP.Book.view.BookFragment;
 import ru.artemdivin.bookreader.MVP.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.View.IFragmentOpener;
 import ru.artemdivin.bookreader.R;
 
 /**
@@ -20,13 +21,13 @@ import ru.artemdivin.bookreader.R;
  */
 
 public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<BookModelEntity> list;
+    RealmResults<BookModelEntity> list;
 
-    public ShowBookAdapter(ArrayList<BookModelEntity> list) {
+    public ShowBookAdapter(RealmResults<BookModelEntity> list) {
         this.list = list;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.tv_author) TextView tvAuthor;
         @BindView(R.id.tv_book_name)TextView tvBookName;
         @BindView(R.id.tv_first_string)TextView tvFirstString;
@@ -36,8 +37,19 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(this);
+
         }
 
+        @Override
+        public void onClick(View v) {
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            if (activity != null && activity instanceof IFragmentOpener){
+                BookFragment fragment = BookFragment.instance(list.get(getAdapterPosition()).getBookName());
+                ((IFragmentOpener)activity).displayFragment(fragment);
+            }
+        }
     }
 
     @Override

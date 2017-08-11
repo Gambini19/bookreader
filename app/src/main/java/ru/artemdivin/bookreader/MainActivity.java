@@ -1,21 +1,16 @@
 package ru.artemdivin.bookreader;
 
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-
 import com.mikepenz.materialdrawer.DrawerBuilder;
-
-import ru.artemdivin.bookreader.Helper.OpenFileDialog;
-import ru.artemdivin.bookreader.Helper.SaverHelper;
-import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
+import ru.artemdivin.bookreader.MVP.View.IFragmentOpener;
 import ru.artemdivin.bookreader.MVP.View.RecyclerViewFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +47,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    public void displayFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.frame, fragment)
+                .commit();
     }
 }

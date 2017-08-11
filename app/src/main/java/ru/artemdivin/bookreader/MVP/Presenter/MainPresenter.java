@@ -5,7 +5,9 @@ import android.webkit.URLUtil;
 
 import java.io.File;
 
+import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Helper.IGetDialogResult;
+import ru.artemdivin.bookreader.MVP.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Model.ASyncInteractor;
 import ru.artemdivin.bookreader.MVP.View.IMainView;
 
@@ -39,9 +41,9 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
     }
 
     @Override
-    public void onSuccessLoadBook() {
+    public void onSuccessLoadBook(RealmResults<BookModelEntity> modelEntities) {
         Log.d("onSuccessLoadBook", "onSuccessLoadBook");
-        view.onSuccess();
+        view.onSuccess(modelEntities);
     }
 
     @Override

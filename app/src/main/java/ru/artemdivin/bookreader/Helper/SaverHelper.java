@@ -1,13 +1,16 @@
 package ru.artemdivin.bookreader.Helper;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import ru.artemdivin.bookreader.MVP.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
 
@@ -17,6 +20,7 @@ import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
 
 public class SaverHelper extends AsyncTask<String, Void, Void>
 {
+    private ArrayList<BookModelEntity> modelEntities = new ArrayList<>();
     private OnLoadBookFinishListener onLoadBookFinishListener;
 
     public SaverHelper(OnLoadBookFinishListener onLoadBookFinishListener) {
@@ -33,14 +37,24 @@ public class SaverHelper extends AsyncTask<String, Void, Void>
             RandomAccessFile f = new RandomAccessFile(file, "r");
             f.readFully(b);
 
+            Log.d("BYTEEEEEEEEEEEEE", String.valueOf(b.length));
+
             Realm realm = Realm.getDefaultInstance();
 
             BookModelEntity entity = new BookModelEntity();
+            entity.setAuthor("A");
+            entity.setBookName("C");
+            entity.setFavorite(true);
+            entity.setFirstString("asadad");
+            entity.setTimeCreation(0);
             entity.setBook(b);
+
+       //     modelEntities.add(entity);
+
             realm.beginTransaction();
-            realm.copyToRealm(entity);
+            realm.copyToRealmOrUpdate(entity);
             realm.commitTransaction();
-            realm.close();
+
 
 
             } catch (FileNotFoundException e) {
@@ -56,6 +70,9 @@ public class SaverHelper extends AsyncTask<String, Void, Void>
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        onLoadBookFinishListener.onSuccessLoadBook();
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<BookModelEntity> result = realm.where(BookModelEntity.class).findAll();
+        onLoadBookFinishListener.onSuccessLoadBook(result);
+
     }
 }

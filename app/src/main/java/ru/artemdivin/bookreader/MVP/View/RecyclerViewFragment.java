@@ -12,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Adapter.ShowBookAdapter;
 import ru.artemdivin.bookreader.Helper.IGetDialogResult;
 import ru.artemdivin.bookreader.Helper.OpenFileDialog;
@@ -62,21 +60,10 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
 
         presenter = new MainPresenter(this);
 
-        BookModelEntity entity = new BookModelEntity();
-        entity.setAuthor("A");
-        entity.setBook("as".getBytes());
-        entity.setBookName("C");
-        entity.setFavorite(true);
-        entity.setFirstString("asadad");
-        entity.setTimeCreation(0);
-
-        ArrayList<BookModelEntity> modelEntities = new ArrayList<>();
-        modelEntities.add(entity);
-
-       adapter = new ShowBookAdapter(modelEntities);
+       //adapter = new ShowBookAdapter(modelEntities);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
-        recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(manager);
 
         presenter.onGetBookByPath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/1.TXT");
@@ -85,10 +72,21 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(RealmResults<BookModelEntity> modelEntities) {
 
         Log.d("КНИГА ДОБАВЛЕНА", "КНИГА ДОБАВЛЕНА");
-        adapter.notifyDataSetChanged();
+        if (adapter == null) {
+            adapter = new ShowBookAdapter(modelEntities);
+            recyclerView.setAdapter(adapter);
+                            }
+        else
+            adapter.notifyDataSetChanged();
+
+
+
+
+
+
 
     }
 

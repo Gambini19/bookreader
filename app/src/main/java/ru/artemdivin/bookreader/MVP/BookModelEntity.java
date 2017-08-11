@@ -1,22 +1,23 @@
 package ru.artemdivin.bookreader.MVP;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Администратор on 08.08.2017.
  */
 
 public class BookModelEntity extends RealmObject {
-    private String author;
+    @PrimaryKey
     private String bookName;
+    private String author;
     private String firstString;
     private byte[] book;
     private  long timeCreation;
     private boolean isFavorite;
 
-    public String getAuthor() {
-        return author;
-    }
+
+    public String getAuthor() {return author;}
 
     public void setAuthor(String author) {
         this.author = author;
