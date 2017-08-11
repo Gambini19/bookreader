@@ -1,9 +1,11 @@
 package ru.artemdivin.bookreader.MVP.Presenter;
 
+import android.util.Log;
 import android.webkit.URLUtil;
 
 import java.io.File;
 
+import ru.artemdivin.bookreader.Helper.IGetDialogResult;
 import ru.artemdivin.bookreader.MVP.Model.ASyncInteractor;
 import ru.artemdivin.bookreader.MVP.View.IMainView;
 
@@ -11,7 +13,7 @@ import ru.artemdivin.bookreader.MVP.View.IMainView;
  * Created by Администратор on 08.08.2017.
  */
 
-public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener {
+public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, IGetDialogResult {
 
     IMainView view;
     ASyncInteractor interactor;
@@ -31,21 +33,32 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener {
 
     @Override
     public void onGetBookByPath(String url) {
-        if (URLUtil.isHttpsUrl(url))
-            interactor.onGetBookFromHTTP(this, url, false);
 
-        else if (new File(url).isFile())
-            interactor.onGetBookFromHTTP(this, url, true);
+
 
     }
 
     @Override
     public void onSuccessLoadBook() {
-
+        Log.d("onSuccessLoadBook", "onSuccessLoadBook");
+        view.onSuccess();
     }
 
     @Override
-    public void onFailedLoadBook() {
+    public void onFailedLoadBook(String error) {
+        Log.d("onFAiledLoadBook", "onFailedLoadBook");
+        view.onFailore(error);
+    }
 
+
+    @Override
+    public void onGetBookPath(String path) {
+        if (URLUtil.isHttpsUrl(path))
+            interactor.onGetBookFromHTTP(this, path, false);
+
+        else if (new File(path).isFile())
+            interactor.onGetBookFromHTTP(this, path, true);
+
+        else view.onFailore("не подходящий файл");
     }
 }

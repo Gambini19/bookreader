@@ -6,5 +6,5 @@ package ru.artemdivin.bookreader.MVP.Presenter;
 
 public interface OnLoadBookFinishListener {
     void onSuccessLoadBook();
-    void onFailedLoadBook();
+    void onFailedLoadBook(String error);
 }

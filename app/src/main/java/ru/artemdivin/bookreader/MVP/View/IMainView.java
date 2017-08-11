@@ -6,5 +6,5 @@ package ru.artemdivin.bookreader.MVP.View;
 
 public interface IMainView {
     void onSuccess();
-    void onFailore();
+    void onFailore(String s);
 }

@@ -1,12 +1,15 @@
 package ru.artemdivin.bookreader.Helper;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+
+import io.realm.Realm;
+import ru.artemdivin.bookreader.MVP.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
 
 /**
  * Created by admin on 10.08.2017.
@@ -14,26 +17,45 @@ import java.io.IOException;
 
 public class SaverHelper extends AsyncTask<String, Void, Void>
 {
+    private OnLoadBookFinishListener onLoadBookFinishListener;
+
+    public SaverHelper(OnLoadBookFinishListener onLoadBookFinishListener) {
+        this.onLoadBookFinishListener = onLoadBookFinishListener;
+    }
 
     @Override
     protected Void doInBackground(String... strings) {
-        File file = new File("http://tgftp.nws.noaa.gov/data/observations/metar/cycles/14Z.TXT");
+        File file = new File(strings[0]);
+        file.isFile();
 
         byte[] b = new byte[(int) file.length()];
         try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(b);
-            for (int i = 0; i < b.length; i++) {
-                System.out.print((char)b[i]);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File Not Found.");
+            RandomAccessFile f = new RandomAccessFile(file, "r");
+            f.readFully(b);
+
+            Realm realm = Realm.getDefaultInstance();
+
+            BookModelEntity entity = new BookModelEntity();
+            entity.setBook(b);
+            realm.beginTransaction();
+            realm.copyToRealm(entity);
+            realm.commitTransaction();
+            realm.close();
+
+
+            } catch (FileNotFoundException e) {
             e.printStackTrace();
+            onLoadBookFinishListener.onFailedLoadBook("FILE_NOT_FOUND");
+        } catch (IOException e) {
+            e.printStackTrace();
+            onLoadBookFinishListener.onFailedLoadBook("FAILORE");
         }
-        catch (IOException e1) {
-            System.out.println("Error Reading The File.");
-            e1.printStackTrace();
-        }
+
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        onLoadBookFinishListener.onSuccessLoadBook();
     }
 }
