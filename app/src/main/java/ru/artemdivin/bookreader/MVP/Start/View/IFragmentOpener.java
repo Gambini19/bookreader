@@ -1,4 +1,4 @@
-package ru.artemdivin.bookreader.MVP.View;
+package ru.artemdivin.bookreader.MVP.Start.View;
 
 
 import android.support.v4.app.Fragment;

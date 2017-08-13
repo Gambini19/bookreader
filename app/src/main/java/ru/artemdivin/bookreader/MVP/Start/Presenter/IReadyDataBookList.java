@@ -1,4 +1,4 @@
-package ru.artemdivin.bookreader.MVP.Presenter;
+package ru.artemdivin.bookreader.MVP.Start.Presenter;
 
 /**
  * Created by Администратор on 08.08.2017.

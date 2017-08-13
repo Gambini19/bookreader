@@ -6,35 +6,14 @@ package ru.artemdivin.bookreader.Helper;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.os.Environment;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Environment;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +21,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -58,6 +35,7 @@ public class OpenFileDialog {
     private String currentPath = Environment.getExternalStorageDirectory().getPath();
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialog;
+    private AlertDialog.Builder ad;
     private IGetDialogResult iGetDialogResult;
 
     public OpenFileDialog(IGetDialogResult i) {
@@ -65,6 +43,54 @@ public class OpenFileDialog {
     }
 
     public OpenFileDialog() {
+    }
+
+    public AlertDialog onStartDialog(final Context context){
+        ad = new AlertDialog.Builder(context);
+        ad.setTitle("Choose destination of a your book");
+        final EditText input = new EditText(context);
+        input.setHint("enter a link of your book here");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+        ad.setView(input);
+        ad.setIcon(android.R.drawable.btn_plus);
+
+        ad.setPositiveButton("Cкачать и добавить книгу в список",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String destination = input.getText().toString();
+                        if (destination.length() != 0
+                                && destination.endsWith(".txt")
+                                && destination.endsWith(".html")){
+                            ad.create().dismiss();
+                            iGetDialogResult.onGetBookPath(String.valueOf(destination));
+                        }
+                        else
+
+                        {
+                            ad.create().dismiss();
+                            Toast.makeText(context, "неверная ссылка", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                });
+        ad.setNegativeButton("Выбрать из репо",
+        new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ad.create().dismiss();
+                onCreateDialog(context).show();
+
+            }
+        });
+        ad.setCancelable(true);
+
+
+        return ad.create();
     }
 
     public AlertDialog onCreateDialog(Context context){

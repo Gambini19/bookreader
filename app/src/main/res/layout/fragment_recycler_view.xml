@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="ru.artemdivin.bookreader.MVP.View.RecyclerViewFragment">
+    tools:context=".MVP.Start.View.RecyclerViewFragment">
 
 
     <android.support.v7.widget.RecyclerView
@@ -22,4 +22,32 @@
         app:fabSize="normal"
         app:backgroundTint="@color/md_cyan_300"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="95dp"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:backgroundTint="@color/md_cyan_300"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="150dp"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:backgroundTint="@color/md_cyan_300"
+        app:srcCompat="@android:drawable/ic_menu_add"
+
+        />
+
 </FrameLayout>

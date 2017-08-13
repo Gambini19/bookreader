@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import ru.artemdivin.bookreader.MVP.View.IFragmentOpener;
-import ru.artemdivin.bookreader.MVP.View.RecyclerViewFragment;
+import ru.artemdivin.bookreader.MVP.Start.View.IFragmentOpener;
+import ru.artemdivin.bookreader.MVP.Start.View.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
 

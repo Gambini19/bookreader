@@ -24,10 +24,7 @@ public class BookFragment extends Fragment implements IOpenerBook {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pager, container, false);
-
         adapter = new ViewPagerAdapter(getChildFragmentManager());
-
-
         pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
 

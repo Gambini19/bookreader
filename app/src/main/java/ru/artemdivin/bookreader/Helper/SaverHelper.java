@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import ru.artemdivin.bookreader.MVP.BookModelEntity;
-import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
+import ru.artemdivin.bookreader.Entity.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Start.Presenter.OnLoadBookFinishListener;
 
 /**
  * Created by admin on 10.08.2017.

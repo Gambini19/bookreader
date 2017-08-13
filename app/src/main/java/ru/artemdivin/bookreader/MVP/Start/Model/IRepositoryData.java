@@ -1,7 +1,7 @@
-package ru.artemdivin.bookreader.MVP.Model;
+package ru.artemdivin.bookreader.MVP.Start.Model;
 
-import ru.artemdivin.bookreader.MVP.Presenter.IReadyDataBookList;
-import ru.artemdivin.bookreader.MVP.Presenter.OnLoadBookFinishListener;
+import ru.artemdivin.bookreader.MVP.Start.Presenter.IReadyDataBookList;
+import ru.artemdivin.bookreader.MVP.Start.Presenter.OnLoadBookFinishListener;
 
 /**
  * Created by Администратор on 08.08.2017.

@@ -1,9 +1,7 @@
-package ru.artemdivin.bookreader.MVP.View;
-
-import java.util.ArrayList;
+package ru.artemdivin.bookreader.MVP.Start.View;
 
 import io.realm.RealmResults;
-import ru.artemdivin.bookreader.MVP.BookModelEntity;
+import ru.artemdivin.bookreader.Entity.BookModelEntity;
 
 /**
  * Created by Администратор on 08.08.2017.

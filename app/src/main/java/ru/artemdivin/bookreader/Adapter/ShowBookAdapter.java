@@ -12,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import ru.artemdivin.bookreader.MVP.Book.view.BookFragment;
-import ru.artemdivin.bookreader.MVP.BookModelEntity;
-import ru.artemdivin.bookreader.MVP.View.IFragmentOpener;
+import ru.artemdivin.bookreader.Entity.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Start.View.IFragmentOpener;
 import ru.artemdivin.bookreader.R;
 
 /**

@@ -1,4 +1,4 @@
-package ru.artemdivin.bookreader.MVP.View;
+package ru.artemdivin.bookreader.MVP.Start.View;
 
 /**
  * Created by admin on 11.08.2017.

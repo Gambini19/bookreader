@@ -1,4 +1,4 @@
-package ru.artemdivin.bookreader.MVP;
+package ru.artemdivin.bookreader.Entity;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

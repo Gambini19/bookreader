@@ -1,4 +1,4 @@
-package ru.artemdivin.bookreader.MVP.Presenter;
+package ru.artemdivin.bookreader.MVP.Start.Presenter;
 
 import android.util.Log;
 import android.webkit.URLUtil;
@@ -7,9 +7,9 @@ import java.io.File;
 
 import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Helper.IGetDialogResult;
-import ru.artemdivin.bookreader.MVP.BookModelEntity;
-import ru.artemdivin.bookreader.MVP.Model.ASyncInteractor;
-import ru.artemdivin.bookreader.MVP.View.IMainView;
+import ru.artemdivin.bookreader.Entity.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Start.Model.ASyncInteractor;
+import ru.artemdivin.bookreader.MVP.Start.View.IMainView;
 
 /**
  * Created by Администратор on 08.08.2017.
