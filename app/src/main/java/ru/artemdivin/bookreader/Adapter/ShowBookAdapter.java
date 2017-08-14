@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Book.View.ViewPagerFragment;
 import ru.artemdivin.bookreader.MVP.Start.View.IFragmentOpener;
@@ -21,9 +22,9 @@ import ru.artemdivin.bookreader.R;
  */
 
 public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    RealmResults<BookModelEntity> list;
+    ArrayList<BookModelEntity> list;
 
-    public ShowBookAdapter(RealmResults<BookModelEntity> list) {
+    public ShowBookAdapter(ArrayList<BookModelEntity> list) {
         this.list = list;
     }
 
@@ -75,5 +76,9 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void addBook(BookModelEntity book){
+        list.add(0, book);
     }
 }

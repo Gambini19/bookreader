@@ -1,6 +1,5 @@
 package ru.artemdivin.bookreader.MVP.Start.View;
 
-import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
 
 /**
@@ -8,6 +7,6 @@ import ru.artemdivin.bookreader.Entity.BookModelEntity;
  */
 
 public interface IMainView {
-    void onSuccess(RealmResults<BookModelEntity> modelEntities);
+    void onSuccess(BookModelEntity modelEntities);
     void onFailore(String s);
 }

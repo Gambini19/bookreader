@@ -13,9 +13,13 @@ public class BookApplication extends Application {
 
         Realm.init(this);
 
+
+        byte[] key = new byte[1024];
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
+                .encryptionKey(key)
                 .build();
+
         Realm.setDefaultConfiguration(config);
 
 

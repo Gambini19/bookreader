@@ -10,7 +10,6 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Start.Presenter.OnLoadBookFinishListener;
 
@@ -71,8 +70,17 @@ public class SaverHelper extends AsyncTask<String, Void, Void>
     @Override
     protected void onPostExecute(Void aVoid) {
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<BookModelEntity> result = realm.where(BookModelEntity.class).findAll();
-        onLoadBookFinishListener.onSuccessLoadBook(result);
 
-    }
-}
+        try {
+            BookModelEntity listResult = realm.where(BookModelEntity.class).findFirst();
+            onLoadBookFinishListener.onSuccessLoadBook(realm.copyFromRealm(listResult));
+        } finally {
+    realm.close();
+        }
+
+
+
+
+        }
+        }
+

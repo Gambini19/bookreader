@@ -1,7 +1,6 @@
 package ru.artemdivin.bookreader.MVP.Book.View;
 
 
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;

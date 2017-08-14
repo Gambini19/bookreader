@@ -13,9 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.RealmResults;
 import ru.artemdivin.bookreader.Adapter.ShowBookAdapter;
 import ru.artemdivin.bookreader.Helper.IGetDialogResult;
 import ru.artemdivin.bookreader.Helper.OpenFileDialog;
@@ -78,22 +79,6 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
             }
         });
 
-/*        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .
-            }
-        });*/
-
-
-
-
-
-
-
-
-       //adapter = new ShowBookAdapter(modelEntities);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
 
@@ -116,22 +101,18 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
         fab2.animate().translationY(0);
     }
     @Override
-    public void onSuccess(RealmResults<BookModelEntity> modelEntities) {
+    public void onSuccess(BookModelEntity modelEntities) {
 
         Log.d("КНИГА ДОБАВЛЕНА", "КНИГА ДОБАВЛЕНА");
         if (adapter == null) {
-            adapter = new ShowBookAdapter(modelEntities);
+            ArrayList<BookModelEntity> list = new ArrayList<>();
+            list.add(modelEntities);
+            adapter = new ShowBookAdapter(list);
             recyclerView.setAdapter(adapter);
                             }
         else
+            adapter.addBook(modelEntities);
             adapter.notifyDataSetChanged();
-
-
-
-
-
-
-
     }
 
     @Override
