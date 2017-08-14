@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.artemdivin.bookreader.MVP.Pager.View.PageFragment">
+    tools:context="ru.artemdivin.bookreader.MVP.Page.View.PageFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

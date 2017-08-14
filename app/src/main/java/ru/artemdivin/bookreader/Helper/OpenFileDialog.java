@@ -63,8 +63,8 @@ public class OpenFileDialog {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String destination = input.getText().toString();
                         if (destination.length() != 0
-                                && destination.endsWith(".txt")
-                                && destination.endsWith(".html")){
+                                || destination.endsWith(".txt")
+                                || destination.endsWith(".html")){
                             ad.create().dismiss();
                             iGetDialogResult.onGetBookPath(String.valueOf(destination));
                         }

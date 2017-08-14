@@ -11,8 +11,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
-import ru.artemdivin.bookreader.MVP.Book.view.BookFragment;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
+import ru.artemdivin.bookreader.MVP.Book.View.ViewPagerFragment;
 import ru.artemdivin.bookreader.MVP.Start.View.IFragmentOpener;
 import ru.artemdivin.bookreader.R;
 
@@ -46,8 +46,10 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public void onClick(View v) {
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             if (activity != null && activity instanceof IFragmentOpener){
-                BookFragment fragment = BookFragment.instance(list.get(getAdapterPosition()).getBookName());
-                ((IFragmentOpener)activity).displayFragment(fragment);
+                //((IFragmentActivityView)activity).onSelectFragment(IFragmentActivityView.TYPE_BOOK);
+         //       BookFragment.instance(list.get(getAdapterPosition()).getBookName());*/
+                // Fragment fr = new ViewPagerFragment();
+                ((IFragmentOpener)activity).displayFragment(ViewPagerFragment.instance(list.get(getAdapterPosition()).getBookName()));
             }
         }
     }

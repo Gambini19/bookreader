@@ -55,7 +55,7 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
 
     @Override
     public void onGetBookPath(String path) {
-        if (URLUtil.isHttpsUrl(path))
+        if (URLUtil.isHttpsUrl(path) || path.endsWith(".html"))
             interactor.onGetBookFromHTTP(this, path, false);
 
         else if (new File(path).isFile())

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
         init();
 
 
-        getFragmentManager()
+        getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame, new RecyclerViewFragment())
                 .commit();

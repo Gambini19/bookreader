@@ -1,10 +1,11 @@
 package ru.artemdivin.bookreader.MVP.Start.View;
 
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -77,13 +78,13 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
             }
         });
 
-        fab2.setOnClickListener(new View.OnClickListener() {
+/*        fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction()
                         .
             }
-        });
+        });*/
 
 
 
