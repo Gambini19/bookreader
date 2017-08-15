@@ -2,6 +2,8 @@ package ru.artemdivin.bookreader.MVP.Book.Presenter;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import ru.artemdivin.bookreader.MVP.Book.Model.PageInteractor;
 import ru.artemdivin.bookreader.MVP.Book.View.IBookView;
 
@@ -20,8 +22,8 @@ public class PagerPresenter implements IPagerPresenter, IGetBookPageCountandFirs
     }
 
     @Override
-    public void onGetPage(String bookName, int position) {
-        interactor.onGetBookPageCountAndFirstPage(this, bookName, position );
+    public void onGetBook(String bookName) {
+        interactor.onGetBookPageCountAndFirstPage(this, bookName );
     }
 
     @Override
@@ -36,8 +38,8 @@ public class PagerPresenter implements IPagerPresenter, IGetBookPageCountandFirs
     }
 
     @Override
-    public void getBookPageCountandFirstpage(int count, byte[] firstPage, int currentPage) {
+    public void getBookPageCountandFirstpage(int count, ArrayList<String> textPage) {
         Log.d("tpageListener", "IGetBookPageCountandFirstpageListener");
-        view.onOpenBook(count, firstPage, currentPage);
+        view.onOpenBook(count, textPage);
     }
 }

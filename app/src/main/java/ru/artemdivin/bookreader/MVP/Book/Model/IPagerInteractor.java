@@ -7,6 +7,6 @@ import ru.artemdivin.bookreader.MVP.Book.Presenter.IGetBookPageCountandFirstpage
  */
 
 public interface IPagerInteractor {
-    void onGetBookPageCountAndFirstPage(IGetBookPageCountandFirstpageListener listener, String bookName, int position);
+    void onGetBookPageCountAndFirstPage(IGetBookPageCountandFirstpageListener listener, String bookName);
 
 }

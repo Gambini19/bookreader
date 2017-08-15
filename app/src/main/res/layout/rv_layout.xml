@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    >
+    android:layout_marginBottom="5dp"
+    android:background="@color/md_white_1000"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,57 +14,73 @@
 
         <TextView
             android:id="@+id/tv_author"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="top|left|start"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:textSize="16dp"
-            android:text="tv_" />
+            android:layout_marginTop="10dp"
+            android:text="tv_"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/tv_book_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
-            android:textSize="14dp"
-            android:text="TextView" />
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_first_string"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
-            android:text="TextView" />
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="#8c8c8c" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="right"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_time_creation"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="textEnd"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_gravity="top|right"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="TextView" />
 
         <CheckBox
             android:id="@+id/cb_favorites"
             style="?android:attr/starStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:duplicateParentState="false"
-            android:textAlignment="textEnd"
-            android:layout_marginRight="16dp"/>
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:duplicateParentState="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="#8c8c8c" />
 
     </LinearLayout>
 

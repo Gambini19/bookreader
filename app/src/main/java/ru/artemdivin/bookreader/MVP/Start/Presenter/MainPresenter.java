@@ -4,6 +4,7 @@ import android.util.Log;
 import android.webkit.URLUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import ru.artemdivin.bookreader.Helper.IGetDialogResult;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
@@ -14,7 +15,7 @@ import ru.artemdivin.bookreader.MVP.Start.View.IMainView;
  * Created by Администратор on 08.08.2017.
  */
 
-public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, IGetDialogResult {
+public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, IGetDialogResult, IReadyDataBookList {
 
     IMainView view;
     ASyncInteractor interactor;
@@ -26,10 +27,7 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
 
     @Override
     public void onGetListFromRepo() {
-
-
-
-
+        interactor.onGetRepositoryBookList(this);
     }
 
     @Override
@@ -42,24 +40,31 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
     @Override
     public void onSuccessLoadBook(BookModelEntity modelEntities) {
         Log.d("onSuccessLoadBook", "onSuccessLoadBook");
-        view.onSuccess(modelEntities);
+        view.onAddBook(modelEntities);
     }
 
     @Override
     public void onFailedLoadBook(String error) {
         Log.d("onFAiledLoadBook", "onFailedLoadBook");
-        view.onFailore(error);
+        view.onFailure(error);
     }
 
 
     @Override
     public void onGetBookPath(String path) {
-        if (URLUtil.isHttpsUrl(path) || path.endsWith(".html"))
-            interactor.onGetBookFromHTTP(this, path, false);
-
-        else if (new File(path).isFile())
+         if (new File(path).isFile())
             interactor.onGetBookFromHTTP(this, path, true);
 
-        else view.onFailore("не подходящий файл");
+          else if (path.toLowerCase().endsWith(".txt"))
+            interactor.onGetBookFromHTTP(this, path, false);
+
+
+
+        else view.onFailure("не подходящий файл");
+    }
+
+    @Override
+    public void onGetListBook(ArrayList<BookModelEntity> listBook) {
+        view.onGetList(listBook);
     }
 }

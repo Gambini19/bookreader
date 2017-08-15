@@ -5,7 +5,7 @@ package ru.artemdivin.bookreader.MVP.Book.Presenter;
  */
 
 interface IPagerPresenter {
-    void onGetPage(String bookName, int position);
+    void onGetBook(String bookName);
     void onGetNextPage(int position);
     void OnGetPrevPage();
 }

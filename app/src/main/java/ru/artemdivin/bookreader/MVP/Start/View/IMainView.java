@@ -1,5 +1,7 @@
 package ru.artemdivin.bookreader.MVP.Start.View;
 
+import java.util.ArrayList;
+
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
 
 /**
@@ -7,6 +9,7 @@ import ru.artemdivin.bookreader.Entity.BookModelEntity;
  */
 
 public interface IMainView {
-    void onSuccess(BookModelEntity modelEntities);
-    void onFailore(String s);
+    void onGetList(ArrayList<BookModelEntity> modelEntities);
+    void onAddBook(BookModelEntity modelEntities);
+    void onFailure(String s);
 }

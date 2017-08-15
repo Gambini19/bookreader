@@ -1,5 +1,7 @@
 package ru.artemdivin.bookreader.MVP.Book.Model;
 
+import java.util.ArrayList;
+
 import io.realm.Realm;
 import ru.artemdivin.bookreader.Entity.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Book.Presenter.IGetBookPageCountandFirstpageListener;
@@ -11,7 +13,7 @@ import ru.artemdivin.bookreader.MVP.Book.Presenter.IGetBookPageCountandFirstpage
 public class PageInteractor implements IPagerInteractor {
 
     @Override
-    public void onGetBookPageCountAndFirstPage(IGetBookPageCountandFirstpageListener listener, String bookName, int position) {
+    public void onGetBookPageCountAndFirstPage(IGetBookPageCountandFirstpageListener listener, String bookName) {
 
 
         Realm r = Realm.getDefaultInstance();
@@ -19,22 +21,23 @@ public class PageInteractor implements IPagerInteractor {
                 .contains("bookName", bookName)
                 .findFirst();
 
-        int countPage = entity.getBook().length / 200;
+        //int countPage =  entity.getBook().length / 200;
 
-        String textPage = "";
+        BookModelEntity bookEntity = r.copyFromRealm(entity);
+        byte[] book = bookEntity.getBook();
 
-        if (entity.getBook().length > 200)
-        {
-            textPage = new String(entity.getBook(), 100*(position+1), 650*(position+1) );}
-
-        else { textPage = new String(entity.getBook(), 100*(position+1), entity.getBook().length );
-        countPage = 1;
+        ArrayList<String> pageOfBook = new ArrayList<>();
+        String text = "";
+        for (int i = 0;i < book.length ; i++) {
+            text += (char)book[i];
+            if (text.length() == 1000)
+            {
+                pageOfBook.add(text);
+                text = "";
+            }
         }
-
-        int currentPage = 1;
-
-
-        listener.getBookPageCountandFirstpage(countPage, textPage.getBytes(), currentPage );
+        pageOfBook.add(text);
+        listener.getBookPageCountandFirstpage(pageOfBook.size(), pageOfBook );
         r.close();
     }
 

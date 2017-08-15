@@ -14,7 +14,7 @@ public class BookApplication extends Application {
         Realm.init(this);
 
 
-        byte[] key = new byte[1024];
+        byte[] key = new byte[64];
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .encryptionKey(key)

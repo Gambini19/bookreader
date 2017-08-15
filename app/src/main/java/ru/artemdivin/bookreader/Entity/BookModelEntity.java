@@ -8,7 +8,7 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class BookModelEntity extends RealmObject {
-    @PrimaryKey
+
     private String bookName;
     private String author;
     private String firstString;

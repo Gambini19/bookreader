@@ -18,14 +18,15 @@ import ru.artemdivin.bookreader.R;
 
         static final String ARGUMENT_PAGE_TEXT = "arg_page_text";
         private PagePresenter presenter;
-        private byte[] firstPage;
-        private byte[] nextP;
+        private String bookPage;
+        /*private byte[] firstPage;
+        private byte[] nextP;*/
 
 
-        public static PageFragment newInstance(byte[] page) {
+        public static PageFragment newInstance(String page) {
             PageFragment pageFragment = new PageFragment();
             Bundle arguments = new Bundle();
-            arguments.putByteArray(ARGUMENT_PAGE_TEXT, page);
+            arguments.putString(ARGUMENT_PAGE_TEXT, page);
             pageFragment.setArguments(arguments);
             return pageFragment;
         }
@@ -33,7 +34,7 @@ import ru.artemdivin.bookreader.R;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            firstPage = getArguments().getByteArray(ARGUMENT_PAGE_TEXT);
+            bookPage = getArguments().getString(ARGUMENT_PAGE_TEXT);
             presenter = new PagePresenter(this);
 
         }
@@ -43,13 +44,8 @@ import ru.artemdivin.bookreader.R;
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_page, null);
             TextView tvPage = (TextView) view.findViewById(R.id.tv_page_fragment);
-            String s = "";
-            for (int i = 0; i < firstPage.length ; i++) {
-                          s+=(char) firstPage[i];
-            }
 
-            tvPage.setText("Page " + s);
-          //  tvPage.setText(s);
+            tvPage.setText(bookPage);
             return view;
         }
 

@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,11 +68,26 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
+        Date date = new Date();
+        date.setTime(list.get(position).getTimeCreation());
+        SimpleDateFormat df_min = new SimpleDateFormat("mm", Locale.ENGLISH);
+        SimpleDateFormat df_our = new SimpleDateFormat("mm", Locale.ENGLISH);
+        String time = "";
+        if (Calendar.getInstance().getTimeInMillis() - list.get(position).getTimeCreation() < 3600000 ) {
+            date.setTime(Calendar.getInstance().getTimeInMillis() - list.get(position).getTimeCreation());
+            time = df_min.format(date) + " min";
+        }
+        else if (Calendar.getInstance().getTimeInMillis() - list.get(position).getTimeCreation() > 3600000)
+        {
+            date.setTime(Calendar.getInstance().getTimeInMillis() - list.get(position).getTimeCreation());
+            time = df_our.format(date) + " hr";
+        }
+
+        ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.tvAuthor.setText(list.get(position).getAuthor());
         viewHolder.tvBookName.setText(list.get(position).getBookName());
         viewHolder.tvFirstString.setText(list.get(position).getFirstString());
-//        viewHolder.tvTimeCreation.setText(0);
+        viewHolder.tvTimeCreation.setText(time);
         viewHolder.cbFavorites.setChecked(false);
 
     }
