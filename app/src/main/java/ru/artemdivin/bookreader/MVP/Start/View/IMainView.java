@@ -12,4 +12,6 @@ public interface IMainView {
     void onGetList(ArrayList<BookModelEntity> modelEntities);
     void onAddBook(BookModelEntity modelEntities);
     void onFailure(String s);
+    void onShowProgress();
+    void onStopProgress();
 }

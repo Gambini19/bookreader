@@ -1,5 +1,6 @@
 package ru.artemdivin.bookreader.Adapter;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class ShowBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
          //       BookFragment.instance(list.get(getAdapterPosition()).getBookName());*/
                 // Fragment fr = new ViewPagerFragment();
                 ((IFragmentOpener)activity).displayFragment(ViewPagerFragment.instance(list.get(getAdapterPosition()).getBookName()));
+
             }
         }
     }

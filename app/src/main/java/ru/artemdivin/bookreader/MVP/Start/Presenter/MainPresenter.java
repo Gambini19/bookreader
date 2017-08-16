@@ -28,6 +28,7 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
     @Override
     public void onGetListFromRepo() {
         interactor.onGetRepositoryBookList(this);
+
     }
 
     @Override
@@ -52,11 +53,13 @@ public class MainPresenter implements IMainPresenter, OnLoadBookFinishListener, 
 
     @Override
     public void onGetBookPath(String path) {
-         if (new File(path).isFile())
+         if (new File(path).isFile()){
             interactor.onGetBookFromHTTP(this, path, true);
+            view.onShowProgress();}
 
           else if (path.toLowerCase().endsWith(".txt"))
-            interactor.onGetBookFromHTTP(this, path, false);
+         {interactor.onGetBookFromHTTP(this, path, false);
+            view.onShowProgress();}
 
 
 

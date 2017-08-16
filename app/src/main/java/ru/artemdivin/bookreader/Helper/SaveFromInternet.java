@@ -90,10 +90,14 @@ public class SaveFromInternet extends AsyncTask<String, Void, String> {
         Realm realm = Realm.getDefaultInstance();
         try {
             BookModelEntity book = realm.where(BookModelEntity.class).equalTo("bookName", bookName).findFirst();
-            BookModelEntity newBook = realm.copyFromRealm(book);
-            onLoadBookFinishListener.onSuccessLoadBook(newBook);
-        }finally {
-            realm.close();
+            if (!realm.isEmpty()) {
+                BookModelEntity newBook = realm.copyFromRealm(book);
+                onLoadBookFinishListener.onSuccessLoadBook(newBook);
+            } else onLoadBookFinishListener.onFailedLoadBook("Ошибка записи в БД");
+        }catch (Exception e){
+            e.getMessage();
+            onLoadBookFinishListener.onFailedLoadBook(e.getMessage());
+        }finally {realm.close();
         }
 
     }

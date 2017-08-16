@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.mikepenz.materialdrawer.DrawerBuilder;
 
 import java.util.ArrayList;
 
@@ -41,6 +47,11 @@ public class ViewPagerFragment extends Fragment implements IBookView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
 
+
+
+
+
+
         pager = (ViewPager) view.findViewById(R.id.view_pager);
         bookName = getArguments().getString("BOOK_NAME");
 
@@ -50,6 +61,9 @@ public class ViewPagerFragment extends Fragment implements IBookView {
         Log.d("ViewPagerFragment", "ViewPagerFragment");
         return view;
     }
+
+
+
 
 
     @Override

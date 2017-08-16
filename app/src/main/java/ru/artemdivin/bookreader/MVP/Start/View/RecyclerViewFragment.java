@@ -2,18 +2,25 @@ package ru.artemdivin.bookreader.MVP.Start.View;
 
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.mikepenz.materialdrawer.DrawerBuilder;
 
 import java.util.ArrayList;
 
@@ -34,6 +41,7 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
     MainPresenter presenter;
     ShowBookAdapter adapter;
     FloatingActionButton fab;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -44,6 +52,14 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
         initial(view);
         presenter = new MainPresenter(this);
         presenter.onGetListFromRepo();
+
+
+        Toolbar toolbar;
+        toolbar = (Toolbar) view.findViewById(R.id.main_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        new DrawerBuilder().withToolbar(toolbar).withActivity(getActivity()).build();
 
         return view;
     }
@@ -88,14 +104,35 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
                 Log.d("Adapter", String.valueOf(adapter));
             adapter.addBook(modelEntities);
             adapter.notifyDataSetChanged();
+                onStopProgress();
+                Toast.makeText(getActivity(), "Книга добавлена", Toast.LENGTH_SHORT).show();
         Log.d("КНИГА ДОБАВЛЕНА", "КНИГА ДОБАВЛЕНА222");
             }
     }
 
     @Override
     public void onFailure(String s) {
+        onStopProgress();
         Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
         Log.d("НЕУДАЧА", "ОШИБКА ЗАГРУЗКИ");
+    }
+
+    @Override
+    public void onShowProgress() {
+        progressDialog = ProgressDialog.show(getActivity(), "загрузка...", null);
+    }
+
+    @Override
+    public void onStopProgress() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private void initial(View view) {

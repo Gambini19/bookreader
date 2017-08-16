@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
     }
 
     public void init() {
-        Toolbar toolbar;
+       /* Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         new DrawerBuilder().withToolbar(toolbar).withActivity(this).build();
-
+*/
     }
 
 
