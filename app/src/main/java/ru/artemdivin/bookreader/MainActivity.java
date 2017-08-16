@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
                 .add(R.id.frame, rFragment)
                 .commit();
 
+
     }
 
     public void init() {

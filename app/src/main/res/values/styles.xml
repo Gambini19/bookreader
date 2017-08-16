@@ -20,6 +20,7 @@
         <item name="windowActionBar">false</item>-->
     </style>
 
+    <style name="AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
 <!--
     <style name = "NoActionBar" parent = "Theme.AppCompat.Light.DarkActionBar">
         <item name = "android:windowActionBar">false</item>

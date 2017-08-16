@@ -26,6 +26,7 @@ import ru.artemdivin.bookreader.Entity.BookModelEntity;
 import ru.artemdivin.bookreader.MVP.Start.Presenter.MainPresenter;
 import ru.artemdivin.bookreader.R;
 
+import static com.mikepenz.materialdrawer.R.attr.layoutManager;
 
 public class RecyclerViewFragment extends Fragment implements IMainView{
     @BindView(R.id.rv_main) RecyclerView recyclerView;
