@@ -1,5 +1,6 @@
 package ru.artemdivin.bookreader.MVP.Book.Presenter;
 
+import android.app.ProgressDialog;
 import android.util.Log;
 
 import java.util.ArrayList;

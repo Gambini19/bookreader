@@ -20,28 +20,13 @@ public class MainActivity extends AppCompatActivity  implements IFragmentOpener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
         rFragment = new RecyclerViewFragment();
-
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.frame, rFragment)
                 .commit();
-
-
     }
-
-    public void init() {
-       /* Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        new DrawerBuilder().withToolbar(toolbar).withActivity(this).build();
-*/
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

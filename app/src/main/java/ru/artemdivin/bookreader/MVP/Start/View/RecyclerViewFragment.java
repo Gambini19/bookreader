@@ -114,7 +114,6 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
     public void onFailure(String s) {
         onStopProgress();
         Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-        Log.d("НЕУДАЧА", "ОШИБКА ЗАГРУЗКИ");
     }
 
     @Override
@@ -145,7 +144,6 @@ public class RecyclerViewFragment extends Fragment implements IMainView{
                 final IGetDialogResult result = new IGetDialogResult() {
                     @Override
                     public void onGetBookPath(String path) {
-                        Log.d("ONGETBOOKRESULT", "ONGETBOOKRESULT");
                         presenter.onGetBookPath(path);
                     }
                 };

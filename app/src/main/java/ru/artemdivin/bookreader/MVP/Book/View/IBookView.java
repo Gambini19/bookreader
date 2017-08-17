@@ -10,4 +10,5 @@ public interface IBookView {
     void onOpenBook(int count, ArrayList<String> firstPage);
 
 
+
 }

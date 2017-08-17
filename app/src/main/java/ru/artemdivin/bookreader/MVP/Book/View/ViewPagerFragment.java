@@ -1,6 +1,7 @@
 package ru.artemdivin.bookreader.MVP.Book.View;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
@@ -44,11 +46,14 @@ public class ViewPagerFragment extends Fragment implements IBookView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
 
 
+        Toolbar toolbar;
+        toolbar = (Toolbar) view.findViewById(R.id.main_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        new DrawerBuilder().withToolbar(toolbar).withActivity(getActivity()).build();
 
 
 
@@ -57,6 +62,7 @@ public class ViewPagerFragment extends Fragment implements IBookView {
 
         presenter = new PagerPresenter(this);
         presenter.onGetBook(bookName);
+
 
         Log.d("ViewPagerFragment", "ViewPagerFragment");
         return view;
@@ -68,7 +74,6 @@ public class ViewPagerFragment extends Fragment implements IBookView {
 
     @Override
     public void onOpenBook(int count, ArrayList<String> textPage) {
-        //pagerAdapter = new ViewStatePagerAdapter(getChildFragmentManager(), count, textPage );
         pagerAdapter = new ViewStatePagerAdapter(getChildFragmentManager(), count, textPage );
         pager.setAdapter(pagerAdapter);
     }
